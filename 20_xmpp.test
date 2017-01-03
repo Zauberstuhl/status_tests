@@ -1,0 +1,21 @@
+# require check_tcp
+# require FRONTENDSERVER
+
+HOSTS=(
+  $FRONTENDSERVER
+)
+
+PORTS=(
+  5269
+  5222
+  5280
+)
+
+for host in "${HOSTS[@]}"; do
+  for port in "${PORTS[@]}"; do
+    check_tcp $host -p $port
+    if [ $? -ne 0 ]; then
+      exit 1;
+    fi
+  done
+done

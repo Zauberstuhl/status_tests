@@ -1,0 +1,7 @@
+# require check_mysql
+# require BACKENDSERVER
+
+check_mysql -P 3306 -H $BACKENDSERVER -n
+if [ $? -ne 0 ]; then
+  exit 1;
+fi
